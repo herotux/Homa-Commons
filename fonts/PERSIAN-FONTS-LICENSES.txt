@@ -1,0 +1,30 @@
+Persian fonts bundled with Homa-Commons
+========================================
+
+All fonts below are distributed under the SIL Open Font License 1.1 (OFL-1.1).
+
+Vazirmatn
+  Source: https://github.com/rastikerdar/vazirmatn
+  License: OFL-1.1
+
+Sahel
+  Source: https://github.com/rastikerdar/sahel-font
+  License: OFL-1.1
+
+Shabnam
+  Source: https://github.com/rastikerdar/shabnam-font
+  License: OFL-1.1
+
+Samim
+  Source: https://github.com/rastikerdar/samim-font
+  License: OFL-1.1
+
+Tanha
+  Source: https://github.com/rastikerdar/tanha-font
+  License: OFL-1.1
+
+Nahid
+  Source: https://github.com/rastikerdar/nahid-font
+  License: OFL-1.1
+
+The original font projects and their authors retain their respective copyrights.
