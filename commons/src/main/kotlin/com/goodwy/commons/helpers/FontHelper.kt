@@ -32,6 +32,12 @@ object FontHelper {
         cachedTypeface = when (actualFontType) {
             FONT_TYPE_MONOSPACE -> Typeface.MONOSPACE
             FONT_TYPE_CUSTOM -> loadCustomFont(context, actualFontFileName)
+            FONT_TYPE_PERSIAN_VAZIRMATN -> PersianFontHelper.typeface(context, PersianFontHelper.Family.VAZIRMATN)
+            FONT_TYPE_PERSIAN_SAHEL -> PersianFontHelper.typeface(context, PersianFontHelper.Family.SAHEL)
+            FONT_TYPE_PERSIAN_SHABNAM -> PersianFontHelper.typeface(context, PersianFontHelper.Family.SHABNAM)
+            FONT_TYPE_PERSIAN_SAMIM -> PersianFontHelper.typeface(context, PersianFontHelper.Family.SAMIM)
+            FONT_TYPE_PERSIAN_TANHA -> PersianFontHelper.typeface(context, PersianFontHelper.Family.TANHA)
+            FONT_TYPE_PERSIAN_NAHID -> PersianFontHelper.typeface(context, PersianFontHelper.Family.NAHID)
             else -> Typeface.DEFAULT
         }
         return cachedTypeface!!
