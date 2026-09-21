@@ -11,7 +11,7 @@ plugins {
     `maven-publish`
 }
 
-group = "com.github.goodwy.goodwy-commons"
+group = "com.github.herotux.Homa-Commons"
 version = findProperty("VERSION")?.toString() ?: System.getenv("VERSION") ?: "8.3.0"
 
 val sourcesJar by tasks.registering(Jar::class) {
@@ -108,7 +108,7 @@ afterEvaluate {
     publishing {
         publications {
             create<MavenPublication>("gplayRelease") {
-                groupId = "com.github.goodwy.goodwy-commons"
+                groupId = "com.github.herotux.Homa-Commons"
                 artifactId = "commons-gplay"
                 version = project.version.toString()
                 from(components.getByName("gplayRelease"))
@@ -119,7 +119,7 @@ afterEvaluate {
             }
 
             create<MavenPublication>("fossRelease") {
-                groupId = "com.github.goodwy.goodwy-commons"
+                groupId = "com.github.herotux.Homa-Commons"
                 artifactId = "commons-foss"
                 version = project.version.toString()
                 from(components.getByName("fossRelease"))
@@ -130,7 +130,7 @@ afterEvaluate {
             }
 
             create<MavenPublication>("rustoreRelease") {
-                groupId = "com.github.goodwy.goodwy-commons"
+                groupId = "com.github.herotux.Homa-Commons"
                 artifactId = "commons-rustore"
                 version = project.version.toString()
                 from(components.getByName("rustoreRelease"))
@@ -141,7 +141,7 @@ afterEvaluate {
             }
 
             create<MavenPublication>("hmsRelease") {
-                groupId = "com.github.goodwy.goodwy-commons"
+                groupId = "com.github.herotux.Homa-Commons"
                 artifactId = "commons-hms"
                 version = project.version.toString()
                 from(components.getByName("hmsRelease"))
