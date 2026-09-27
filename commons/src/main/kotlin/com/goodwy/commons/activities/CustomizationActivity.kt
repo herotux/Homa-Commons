@@ -732,6 +732,12 @@ class CustomizationActivity : BaseSimpleActivity() {
     private fun updateFontDisplay() {
         binding.customizationFont.text = when (curFontType) {
             FONT_TYPE_MONOSPACE -> getString(R.string.font_monospace)
+            FONT_TYPE_PERSIAN_VAZIRMATN -> "Vazirmatn"
+            FONT_TYPE_PERSIAN_SAHEL -> "Sahel"
+            FONT_TYPE_PERSIAN_SHABNAM -> "Shabnam"
+            FONT_TYPE_PERSIAN_SAMIM -> "Samim"
+            FONT_TYPE_PERSIAN_TANHA -> "Tanha"
+            FONT_TYPE_PERSIAN_NAHID -> "Nahid"
             FONT_TYPE_CUSTOM -> curFontFileName.ifEmpty { getString(R.string.select_font_file) }
             else -> getString(R.string.system_default)
         }
@@ -743,6 +749,12 @@ class CustomizationActivity : BaseSimpleActivity() {
         val items = arrayListOf(
             RadioItem(FONT_TYPE_SYSTEM_DEFAULT, getString(R.string.system_default)),
             RadioItem(FONT_TYPE_MONOSPACE, getString(R.string.font_monospace)),
+            RadioItem(FONT_TYPE_PERSIAN_VAZIRMATN, "Vazirmatn"),
+            RadioItem(FONT_TYPE_PERSIAN_SAHEL, "Sahel"),
+            RadioItem(FONT_TYPE_PERSIAN_SHABNAM, "Shabnam"),
+            RadioItem(FONT_TYPE_PERSIAN_SAMIM, "Samim"),
+            RadioItem(FONT_TYPE_PERSIAN_TANHA, "Tanha"),
+            RadioItem(FONT_TYPE_PERSIAN_NAHID, "Nahid"),
             RadioItem(FONT_TYPE_CUSTOM, selectFontFileText)
         )
 
