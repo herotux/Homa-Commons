@@ -35,6 +35,13 @@ fun formatShamsiDatePart(persianDate: PersianDate, pattern: String): String {
 
 fun formatShamsiWithPersianLocale(persianDate: PersianDate, pattern: String): String {
     var result = pattern
+
+    val englishMonthNames = arrayOf(
+        "farvardin", "ordibehesht", "khordad", "tir", "mordad", "shahrivar",
+        "mehr", "aban", "azar", "dey", "bahman", "esfand"
+    )
+    val englishMonth = englishMonthNames[persianDate.shMonth - 1]
+    result = result.replace("mmmm_en", englishMonth)
     result = result.replace("MMMM", persianDate.monthName)
     result = result.replace("mmmm", persianDate.monthName)
 
@@ -48,6 +55,16 @@ fun formatShamsiWithPersianLocale(persianDate: PersianDate, pattern: String): St
     result = result.replace("YYYY", persianDate.shYear.toString())
     result = result.replace("YY", persianDate.shYear.toString().takeLast(2))
     result = result.replace("DD", persianDate.shDay.toString().padStart(2, '0'))
+
+    if (pattern == DATE_FORMAT_FIFTEEN) {
+        result = result.map { char ->
+            when (char) {
+                '0' -> '۰'; '1' -> '۱'; '2' -> '۲'; '3' -> '۳'; '4' -> '۴'
+                '5' -> '۵'; '6' -> '۶'; '7' -> '۷'; '8' -> '۸'; '9' -> '۹'
+                else -> char
+            }
+        }.joinToString("")
+    }
 
     return result
 }
