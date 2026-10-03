@@ -576,6 +576,8 @@ const val DATE_FORMAT_ELEVEN = "yy-MM-dd"
 const val DATE_FORMAT_TWELVE = "yyMMdd"
 const val DATE_FORMAT_THIRTEEN = "yy.MM.dd"
 const val DATE_FORMAT_FOURTEEN = "yy/MM/dd"
+const val DATE_FORMAT_FIFTEEN = "d MMMM"
+const val DATE_FORMAT_SIXTEEN = "d mmmm_en"
 
 const val TIME_FORMAT_12 = "hh:mm a"
 const val TIME_FORMAT_24 = "HH:mm"
