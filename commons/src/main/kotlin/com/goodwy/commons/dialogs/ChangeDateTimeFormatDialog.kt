@@ -62,6 +62,8 @@ class ChangeDateTimeFormatDialog(val activity: Activity, val showShamsi: Boolean
                 DATE_FORMAT_SIX -> changeDateTimeDialogRadioSix
                 DATE_FORMAT_SEVEN -> changeDateTimeDialogRadioSeven
                 DATE_FORMAT_TEN -> changeDateTimeDialogRadioTen
+                DATE_FORMAT_FIFTEEN -> changeDateTimeDialogRadioFifteen
+                DATE_FORMAT_SIXTEEN -> changeDateTimeDialogRadioSixteen
                 else -> changeDateTimeDialogRadioEight
             }
             formatButton.isChecked = true
@@ -95,6 +97,8 @@ class ChangeDateTimeFormatDialog(val activity: Activity, val showShamsi: Boolean
             changeDateTimeDialogRadioSeven.text = formatDateSample(DATE_FORMAT_SEVEN)
             changeDateTimeDialogRadioEight.text = formatDateSample(DATE_FORMAT_EIGHT)
             changeDateTimeDialogRadioTen.text = formatDateSample(DATE_FORMAT_TEN)
+            changeDateTimeDialogRadioFifteen.text = formatDateSample(DATE_FORMAT_FIFTEEN)
+            changeDateTimeDialogRadioSixteen.text = formatDateSample(DATE_FORMAT_SIXTEEN)
         }
     }
 
@@ -108,6 +112,8 @@ class ChangeDateTimeFormatDialog(val activity: Activity, val showShamsi: Boolean
             view.changeDateTimeDialogRadioSix.id -> DATE_FORMAT_SIX
             view.changeDateTimeDialogRadioSeven.id -> DATE_FORMAT_SEVEN
             view.changeDateTimeDialogRadioTen.id -> DATE_FORMAT_TEN
+            view.changeDateTimeDialogRadioFifteen.id -> DATE_FORMAT_FIFTEEN
+            view.changeDateTimeDialogRadioSixteen.id -> DATE_FORMAT_SIXTEEN
             else -> DATE_FORMAT_EIGHT
         }
 
@@ -146,6 +152,8 @@ fun ChangeDateTimeFormatAlertDialog(
             Pair(DATE_FORMAT_SIX, formatDateSample(DATE_FORMAT_SIX)),
             Pair(DATE_FORMAT_SEVEN, formatDateSample(DATE_FORMAT_SEVEN)),
             Pair(DATE_FORMAT_EIGHT, formatDateSample(DATE_FORMAT_EIGHT)),
+            Pair(DATE_FORMAT_FIFTEEN, formatDateSample(DATE_FORMAT_FIFTEEN)),
+            Pair(DATE_FORMAT_SIXTEEN, formatDateSample(DATE_FORMAT_SIXTEEN)),
         )
     }
     val kinds = remember {
