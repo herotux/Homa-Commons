@@ -62,7 +62,12 @@ fun Long.formatDate(
 private fun Long.formatWithGregorian(dateFormat: String, timeFormat: String): String {
     val cal = Calendar.getInstance(Locale.ENGLISH)
     cal.timeInMillis = this
-    val datePart = DateFormat.format(dateFormat, cal).toString()
+    val datePart = if (dateFormat == DATE_FORMAT_SIXTEEN) {
+        val month = cal.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH)?.lowercase(Locale.ENGLISH).orEmpty()
+        "${cal.get(Calendar.DAY_OF_MONTH)} $month"
+    } else {
+        DateFormat.format(dateFormat, cal).toString()
+    }
     val timePart = DateFormat.format(timeFormat, cal).toString()
     return "$datePart, $timePart"
 }
