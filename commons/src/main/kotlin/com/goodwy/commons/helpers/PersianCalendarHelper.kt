@@ -17,6 +17,10 @@ fun formatTimePart(timestamp: Long, timeFormat: String): String {
 
 fun formatShamsiDatePart(persianDate: PersianDate, pattern: String): String {
     return try {
+        if (pattern.contains("MMMM") || pattern.contains("mmmm")) {
+            return formatShamsiWithPersianLocale(persianDate, pattern)
+        }
+
         val localDate = LocalDate.of(
             persianDate.shYear,
             persianDate.shMonth,
