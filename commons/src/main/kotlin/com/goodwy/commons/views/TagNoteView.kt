@@ -1,8 +1,12 @@
 package com.goodwy.commons.views
 
+import android.app.AlertDialog
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
+import android.text.SpannableString
 import android.text.TextUtils
+import android.text.method.LinkMovementMethod
+import android.text.util.Linkify
 import android.view.Gravity
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -16,6 +20,10 @@ import kotlin.math.roundToInt
 class TagNoteView(private val activity: BaseSimpleActivity) : LinearLayout(activity) {
     private val tagsRow = LinearLayout(activity)
     private val noteView = MyTextView(activity)
+
+    companion object {
+        private const val LONG_NOTE_THRESHOLD = 180
+    }
 
     init {
         orientation = VERTICAL
@@ -32,6 +40,8 @@ class TagNoteView(private val activity: BaseSimpleActivity) : LinearLayout(activ
             maxLines = 2
             ellipsize = TextUtils.TruncateAt.END
             setPadding(dp(4), dp(2), dp(4), dp(2))
+            linksClickable = true
+            movementMethod = LinkMovementMethod.getInstance()
         }
         addView(noteView, LayoutParams(-1, -2))
     }
@@ -55,10 +65,54 @@ class TagNoteView(private val activity: BaseSimpleActivity) : LinearLayout(activ
                 layoutParams = LayoutParams(-2, dp(22)).apply { marginEnd = dp(5) }
             })
         }
+
         val text = note?.text?.trim().orEmpty()
-        noteView.text = if (text.isEmpty()) "" else "Note  ·  $text"
-        noteView.visibility = if (text.isEmpty()) GONE else VISIBLE
+        if (text.isEmpty()) {
+            noteView.text = ""
+            noteView.visibility = GONE
+            noteView.setOnClickListener(null)
+        } else {
+            val displayText = SpannableString("Note  ·  $text")
+            Linkify.addLinks(displayText, Linkify.WEB_URLS)
+            noteView.text = displayText
+            noteView.visibility = VISIBLE
+
+            val isLong = text.length > LONG_NOTE_THRESHOLD
+            noteView.setOnClickListener(if (isLong) {
+                { showFullNote(text) }
+            } else {
+                null
+            })
+        }
+
         visibility = if (tags.isEmpty() && text.isEmpty()) GONE else VISIBLE
+    }
+
+    private fun showFullNote(text: String) {
+        val fullText = TextView(activity).apply {
+            textSize = 14f
+            setTextColor(activity.getProperTextColor())
+            setPadding(dp(4), dp(4), dp(4), dp(4))
+            autoLinkMask = 0
+            linksClickable = true
+            movementMethod = LinkMovementMethod.getInstance()
+
+            val spannable = SpannableString(text)
+            Linkify.addLinks(spannable, Linkify.WEB_URLS)
+            this.text = spannable
+        }
+
+        val container = LinearLayout(activity).apply {
+            orientation = VERTICAL
+            setPadding(dp(20), dp(4), dp(20), dp(4))
+            addView(fullText, LinearLayout.LayoutParams(-1, -2))
+        }
+
+        AlertDialog.Builder(activity)
+            .setTitle(com.goodwy.commons.R.string.notes)
+            .setView(container)
+            .setPositiveButton(android.R.string.ok, null)
+            .show()
     }
 
     private fun withAlpha(color: Int, alpha: Float): Int {
